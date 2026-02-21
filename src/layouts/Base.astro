@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Jade Duong' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="/" class="logo">Jade Duong</a>
+    <ul class="nav-links">
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/#blog">Blog</a></li>
+      <li><a href="/#about">About</a></li>
+    </ul>
+  </nav>
+
+  <slot />
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="left">&copy; 2026 Jade Duong</span>
+    <span class="right">Still figuring it out.</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav?.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Blog tag filtering
+    const filters = document.getElementById('blog-filters');
+    const blogList = document.getElementById('blog-list');
+    const emptyMsg = document.getElementById('blog-empty');
+
+    if (filters && blogList) {
+      filters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+
+        const tag = btn.dataset.tag;
+
+        // Update active button
+        filters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter posts
+        const items = blogList.querySelectorAll('.blog-item');
+        let visibleCount = 0;
+
+        items.forEach(item => {
+          if (tag === 'all' || item.dataset.tag === tag) {
+            item.style.display = '';
+            visibleCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        // Show empty message if no posts
+        if (emptyMsg) {
+          emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

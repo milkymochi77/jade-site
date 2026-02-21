@@ -1,0 +1,45 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = [...new Set(posts.map((post) => post.data.tag))];
+
+  return tags.map((tag) => ({
+    params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
+    props: {
+      tag,
+      posts: posts
+        .filter((post) => post.data.tag === tag)
+        .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+}
+---
+
+<Base title={`${tag} — Jade Duong`}>
+
+  <section style="padding-top: 10rem;">
+    <div class="section-header">
+      <h2>{tag}</h2>
+      <span class="note"><a href="/#blog" style="color: var(--stone); text-decoration: none;">← All posts</a></span>
+    </div>
+    <div class="blog-list">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}`} class="blog-item">
+          <span class="blog-date">{formatDate(post.data.date)}</span>
+          <span class="blog-title">{post.data.title}</span>
+          <span class="blog-tag">{post.data.tag}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+</Base>
