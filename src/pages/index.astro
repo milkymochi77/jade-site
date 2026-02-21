@@ -1,16 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-
-// Get all blog posts, sorted newest first
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-
-// Format date helper
-function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-}
 ---
 
 <Base title="Jade Duong">
@@ -22,8 +11,7 @@ function formatDate(date: Date) {
     <p class="hero-description">
       I'm Jade. This is a small corner of the internet where I
       share things I'm learning, things I'm making with vibe
-      coding, and thoughts I'm working through — often with
-      AI as a thinking partner.
+      coding, and thoughts I'm working through.
     </p>
     <div class="hero-scroll">
       <span class="line"></span>
@@ -38,52 +26,7 @@ function formatDate(date: Date) {
       <span class="note">things I vibe coded</span>
     </div>
     <div class="projects-grid">
-
-      <div class="project-card reveal">
-        <span class="project-number">01</span>
-        <h3>Initiative Tracker Dashboard</h3>
-        <p>
-          Wanted to see if I could build a real dashboard
-          just by describing what I needed. Turns out I could.
-          It's not perfect — but it works and I learned a ton.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Vibe Coding</span>
-          <span class="tag">Dashboard</span>
-          <span class="tag">First Try</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <span class="project-number">02</span>
-        <h3>Financial Model Playground</h3>
-        <p>
-          I kept running the same analyses at work so I asked
-          myself: what if I just... built a tool for it?
-          Spoiler — it started messy and got surprisingly useful.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Vibe Coding</span>
-          <span class="tag">Finance</span>
-          <span class="tag">Experiment</span>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <span class="project-number">03</span>
-        <h3>Design Thinking Toolkit</h3>
-        <p>
-          Can you make design thinking feel less intimidating?
-          I tried building a simple web toolkit for running
-          workshops remotely. Still iterating on this one.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Vibe Coding</span>
-          <span class="tag">UX</span>
-          <span class="tag">Work in Progress</span>
-        </div>
-      </div>
-
+      <p style="color: var(--stone); font-style: italic; font-family: var(--serif);">Coming soon — stay tuned.</p>
     </div>
   </section>
 
@@ -93,28 +36,9 @@ function formatDate(date: Date) {
       <h2>Writing</h2>
       <span class="note">thinking out loud, with AI as a companion</span>
     </div>
-
-    <!-- Tag filters -->
-    <div class="blog-filters reveal" id="blog-filters">
-      <button class="filter-btn active" data-tag="all">All</button>
-      {[...new Set(posts.map(p => p.data.tag))].sort().map((tag) => (
-        <button class="filter-btn" data-tag={tag}>{tag}</button>
-      ))}
+    <div class="blog-list">
+      <p style="color: var(--stone); font-style: italic; font-family: var(--serif);">Coming soon — stay tuned.</p>
     </div>
-
-    <div class="blog-list" id="blog-list">
-      {posts.map((post) => (
-        <a href={`/blog/${post.slug}`} class="blog-item reveal" data-tag={post.data.tag}>
-          <span class="blog-date">{formatDate(post.data.date)}</span>
-          <span class="blog-title">{post.data.title}</span>
-          <span class="blog-tag">{post.data.tag}</span>
-        </a>
-      ))}
-    </div>
-
-    <p class="blog-empty" id="blog-empty" style="display:none;">
-      No posts in this category yet — stay tuned.
-    </p>
   </section>
 
   <!-- ABOUT -->
