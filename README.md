@@ -1,7 +1,4 @@
-# 🌱 Jade's Website — Getting Started Guide
-
-Hey Jade! This guide will walk you through everything from "I've never done this before" to "my website is live on the internet." Take it one step at a time. There's no rush.
-
+# 🌱 Jade's Website
 ---
 
 ## What's in this project?
@@ -249,11 +246,4 @@ Edit `src/styles/global.css` — the colors are at the top in the `:root` sectio
 **Need help?** → Paste the error message into Claude or ChatGPT and ask what it means. That's vibe coding!
 
 ---
-
 ## You've got this! 💪
-
-Remember — everything on your site is a work in progress. That's kind of the whole point.
-
-The first push is the hardest. After that, adding a blog post takes about 5 minutes. You write, you push, it's live.
-
-Welcome to building in public, Jade.
