@@ -1,5 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+}
 ---
 
 <Base title="Jade Duong">
@@ -36,9 +45,27 @@ import Base from '../layouts/Base.astro';
       <h2>Writing</h2>
       <span class="note">thinking out loud, with AI as a companion</span>
     </div>
-    <div class="blog-list">
-      <p style="color: var(--stone); font-style: italic; font-family: var(--serif);">Coming soon — stay tuned.</p>
+
+    <div class="blog-filters reveal" id="blog-filters">
+      <button class="filter-btn active" data-tag="all">All</button>
+      {[...new Set(posts.map(p => p.data.tag))].sort().map((tag) => (
+        <button class="filter-btn" data-tag={tag}>{tag}</button>
+      ))}
     </div>
+
+    <div class="blog-list" id="blog-list">
+      {posts.map((post) => (
+        <a href={`/blog/${post.slug}`} class="blog-item reveal" data-tag={post.data.tag}>
+          <span class="blog-date">{formatDate(post.data.date)}</span>
+          <span class="blog-title">{post.data.title}</span>
+          <span class="blog-tag">{post.data.tag}</span>
+        </a>
+      ))}
+    </div>
+
+    <p class="blog-empty" id="blog-empty" style="display:none;">
+      No posts in this category yet — stay tuned.
+    </p>
   </section>
 
   <!-- ABOUT -->
