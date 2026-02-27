@@ -90,13 +90,13 @@ nav .nav-links a:hover { color: var(--ink); }
 nav .nav-links a:hover::after { width: 100%; }
 
 /* --- SECTIONS --- */
-section { padding: 6rem 3rem; }
+section { padding: 3rem 3rem; }
 
 .section-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   border-bottom: 1px solid var(--ghost);
   padding-bottom: 1.5rem;
 }
@@ -118,12 +118,12 @@ section { padding: 6rem 3rem; }
 
 /* --- HERO --- */
 .hero {
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8rem 3rem 6rem;
-  max-width: 860px;
+  padding: 8rem 3rem 3rem;
+  max-width: 1100px;
 }
 
 .hero-label {
@@ -153,7 +153,7 @@ section { padding: 6rem 3rem; }
 }
 
 .hero-description {
-  max-width: 500px;
+  max-width: 640px;
   color: var(--stone);
   font-size: 0.95rem;
   line-height: 1.9;
@@ -162,7 +162,7 @@ section { padding: 6rem 3rem; }
 }
 
 .hero-scroll {
-  margin-top: 4rem;
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -347,7 +347,7 @@ section { padding: 6rem 3rem; }
 
 /* --- ABOUT --- */
 .about-content {
-  max-width: 560px;
+  max-width: 720px;
 }
 
 .about-content p {
@@ -365,9 +365,9 @@ section { padding: 6rem 3rem; }
 }
 
 .about-contact {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--ghost);
+  margin-top: 1.5rem;
+  padding-top: 0rem;
+  border-top: none;
   display: flex;
   gap: 2.5rem;
 }
