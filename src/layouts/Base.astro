@@ -88,7 +88,30 @@ const { title = 'Jade Duong' } = Astro.props;
         }
       });
     }
-  </script>
+  
+  // Project tag filtering
+    const projectFilters = document.getElementById('project-filters');
+    const projectsGrid = document.getElementById('projects-grid');
 
-</body>
-</html>
+    if (projectFilters && projectsGrid) {
+      projectFilters.addEventListener('click', (e) => {
+        const btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+
+        const tag = btn.dataset.tag;
+
+        projectFilters.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const cards = projectsGrid.querySelectorAll('.project-card');
+        cards.forEach(card => {
+          const cardTags = card.dataset.tags.split(',');
+          if (tag === 'all' || cardTags.includes(tag)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    }
+  </script>

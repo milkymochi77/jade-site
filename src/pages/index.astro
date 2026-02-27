@@ -6,6 +6,10 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
+const projects = (await getCollection('projects')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
 }
@@ -32,10 +36,28 @@ function formatDate(date: Date) {
   <section id="projects">
     <div class="section-header reveal">
       <h2>Projects</h2>
-      <span class="note">things I vibe coded</span>
     </div>
-    <div class="projects-grid">
-      <p style="color: var(--stone); font-style: italic; font-family: var(--serif);">Coming soon — stay tuned.</p>
+
+    <div class="blog-filters reveal" id="project-filters">
+      <button class="filter-btn active" data-tag="all">All</button>
+      {[...new Set(projects.flatMap(p => p.data.tags))].sort().map((tag) => (
+        <button class="filter-btn" data-tag={tag}>{tag}</button>
+      ))}
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+      {projects.map((project) => (
+        <div class="project-card reveal" data-tags={project.data.tags.join(',')}>
+          <span class="project-number">{project.data.number}</span>
+          <h3>{project.data.title}</h3>
+          <p>{project.data.description}</p>
+          <div class="project-tags">
+            {project.data.tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -43,7 +65,6 @@ function formatDate(date: Date) {
   <section id="blog">
     <div class="section-header reveal">
       <h2>Writing</h2>
-      <span class="note">thinking out loud</span>
     </div>
 
     <div class="blog-filters reveal" id="blog-filters">
@@ -91,6 +112,7 @@ function formatDate(date: Date) {
       <div class="about-contact">
         <a href="mailto:jadeduong1707@gmail.com">Email</a>
         <a href="https://linkedin.com/in/jade-duong/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/milkymochi77" target="_blank" rel="noopener">GitHub</a>
       </div>
     </div>
   </section>
