@@ -200,6 +200,8 @@ section { padding: 3rem 3rem; }
   cursor: pointer;
   position: relative;
   background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
 }
 
 .project-card::before {

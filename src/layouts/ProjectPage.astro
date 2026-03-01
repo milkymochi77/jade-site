@@ -1,0 +1,24 @@
+---
+import Base from './Base.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Base title={`${frontmatter.title} — Jade Duong`}>
+  <div class="blog-post-header">
+    <a href="/#projects" class="back-link">← Back to all projects</a>
+      <div class="blog-post-meta">
+      <span>{frontmatter.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</span>
+      <span class="post-tag">{frontmatter.number}</span>
+    </div>
+    <h1>{frontmatter.title}</h1>
+    <div class="project-tags" style="margin-top: 1.5rem;">
+      {frontmatter.tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+  </div>
+  <div class="blog-post-content">
+    <slot />
+  </div>
+</Base>

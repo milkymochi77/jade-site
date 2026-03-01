@@ -11,7 +11,7 @@ const projects = (await getCollection('projects')).sort(
 );
 
 function formatDate(date: Date) {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' });
 }
 ---
 
@@ -47,7 +47,7 @@ function formatDate(date: Date) {
 
     <div class="projects-grid" id="projects-grid">
       {projects.map((project) => (
-        <div class="project-card reveal" data-tags={project.data.tags.join(',')}>
+        <a href={`/projects/${project.slug}`} class="project-card reveal" data-tags={project.data.tags.join(',')}>
           <span class="project-number">{project.data.number}</span>
           <h3>{project.data.title}</h3>
           <p>{project.data.description}</p>
@@ -56,7 +56,7 @@ function formatDate(date: Date) {
               <span class="tag">{tag}</span>
             ))}
           </div>
-        </div>
+        </a>
       ))}
     </div>
   </section>
