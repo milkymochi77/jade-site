@@ -10,7 +10,7 @@ order: 2
 
 <a href="https://boba-pet.vercel.app/" target="_blank">Try Boba Pet →</a>
 
-Let me tell you about two things I love: bubble tea and cute things. Ducks, bunnies, cats with little hats. If it's small and adorable, I'm interested. So when I was looking for my next vibe coding project, the idea came naturally. What if I built a digital pet that grows every time you drink boba?
+Let me tell you about two things I love: bubble tea and cute things. Bunnies, dogs, bears, and cats with little hats. If it's small and adorable, I'm interested. So when I was looking for my next vibe coding project, the idea came naturally. What if I built a digital pet that grows every time you drink boba?
 
 That's how Boba Pet was born.
 
@@ -20,9 +20,9 @@ There's a coin shop where you can buy your pet outfits like a bow tie, a crown, 
 
 Here's the part that surprises people: I built the entire MVP in one evening.
 
-I had Claude on my MacBook. That was it. I described my idea, and Claude generated the first working prototype as an interactive component right in the chat. Then it gave me a step-by-step guide to set up a real development environment. I opened Terminal for the first time, installed Homebrew, installed Node.js, and created a Next.js project with one command. Then I opened Claude Code, an AI coding assistant that runs in the terminal, and described what I wanted in plain English.
+I had Claude on my MacBook. That was it. I described my idea, and Claude generated the first working prototype as an interactive component right in the chat. Then it gave me a step-by-step guide to set up a real development environment. I opened Terminal, installed Homebrew, installed Node.js, and created a Next.js project with one command. Then I opened Claude Code, an AI coding assistant that runs in the terminal, and described what I wanted in plain English.
 
-Claude Code read my project files, thought about it for a few minutes, and wrote 737 lines of production-ready code. It ran type checks and build verification automatically. I opened my browser, went to localhost:3000, and there it was: a fully working Boba Pet game with a cute duck wearing a boba hat.
+Claude Code read my project files, thought about it for a few minutes, and wrote about 700 lines of production-ready code. It ran type checks and build verification automatically. I opened my browser, went to localhost, and there it was: a fully working Boba Pet game with a cute duck wearing a boba hat.
 
 When I wanted to push the code to GitHub, I told Claude Code to help me and it walked me through the entire process. When I wanted to deploy it so anyone could see it online, I connected my GitHub to Vercel and hit deploy. From an empty MacBook to a live app on the internet, in one evening. The whole experience felt like having a conversation with a senior developer who just happens to type impossibly fast.
 
